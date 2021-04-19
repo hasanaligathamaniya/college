@@ -57,8 +57,9 @@
         }
         
         switch ($source) {
-            case 'home-page':
-             include 'include/path/default.php';
+
+            case 'notification':
+             include 'include/path/notification.php';
             break;
             
             default:
