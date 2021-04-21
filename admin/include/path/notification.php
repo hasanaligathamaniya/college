@@ -16,6 +16,17 @@ if (isset($_POST['add_notice'])) {
 
 }
 
+if (isset($_POST['update'])) {
+	
+	$id= $_GET['edit_id'];
+    $department = $_POST['department'];
+	$msg = $_POST['msg'];
+
+	$query="UPDATE notification SET department ='{$department}' , msg='{$msg}' WHERE id='{$id}'";
+	$smtp= mysqli_query($conn, $query);
+
+    header("location: ../admin/?ref=notification");
+}
  ?>
 
 <div class="container-fluid">
@@ -53,6 +64,43 @@ if (isset($_POST['add_notice'])) {
 
 			</form>
 
+
+     <?php  if (isset($_GET['edit_id'])) {  ?>
+
+     		<form action="" method="post" class="border p-2 mt-3 mb-3">
+     		 <label class="h3">Update*</label>
+			  <div class="form-group col-sm-6">
+			    <label for="exampleFormControlSelect1">Select Department</label>
+			    <select class="form-control" id="exampleFormControlSelect1" name="department" required>
+			    	<option><?php echo $_GET['dep']; ?></option>
+			    	<optgroup label="U.G">
+			    	 <option>Select*</option>
+			    	  <option>BCA</option>
+				      <option>BSc</option>
+				      <option>B.com</option>
+				      <option>BBA</option>
+				      <option>BA</option>
+				    <optgroup label="P.G">
+				      <option>MCA</option>
+				      <option>MSc</option>
+				      <option>M.com</option>
+				      <option>MBA</option>
+				      <option>MA</option>
+			    </select>
+			  </div>
+			  <div class="form-group col-sm-9">
+			    <label for="exampleFormControlTextarea1">Message</label>
+			    <textarea class="form-control" id="exampleFormControlTextarea1"  name="msg" rows="3" placeholder="Type some thing..." required><?php echo $_GET['msg']; ?></textarea>
+			  </div>
+
+			  <div class="form-group col-sm-9">
+				<button type="submit" name="update" class="btn btn-primary">Update</button>
+			  </div>
+
+			</form>
+
+     		<?php } ?>
+
 			<table class="table border">
 			  <thead class="bg-light">
 			    <tr>
@@ -73,14 +121,19 @@ if (isset($_POST['add_notice'])) {
 			  			
 			  		 $department = $row['department'];
 			  		 $msg= $row['msg'];	
+			  		 $id= $row['id'];	
 
 			  		 echo '
 
 					  	<tr>
 					      <th scope="row">'.$i.'</th>
-					      <td>'.$msg.'</td>
+					      <td>'.substr($msg,0,15).'..</td>
 					      <td>'.$department.'</td>
-					      <td></td>
+					      <td>
+					      <a onclick="return confirm(\'Are you sure you want to delete this item?\');" href="../admin/?ref=notification&remove_id='.$id.'" class="btn btn-outline-primary"><i class="fa fa-trash" aria-hidden="true"></i></a>&nbsp;&nbsp;
+					       <a href="../admin/?ref=notification&edit_id='.$id.'&dep='.$department.'&msg='.$msg.'" class="btn btn-outline-primary">
+					       <i class="fas fa-edit"></i></a>
+					       </td>	
 					    </tr>
 
 			  		 ';
@@ -97,3 +150,19 @@ if (isset($_POST['add_notice'])) {
 	</div>
  </div>
 </div>
+<?php 
+
+
+// echo $_GET['remove_id'];
+if (isset($_GET['remove_id'])) {
+	
+	$id=$_GET['remove_id'];
+
+	$query="DELETE FROM notification WHERE id='{$id}'";
+	$smtp= mysqli_query($conn,$query);
+
+	header("location: ../admin/?ref=notification");
+
+}
+
+ ?>

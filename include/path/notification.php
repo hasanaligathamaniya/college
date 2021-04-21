@@ -22,17 +22,69 @@
         <div class="card">
             <div class="card-header p-0 bg-secondary">
                 <div class="btn-group" role="group" aria-label="Basic example">
-                  <button type="button" class="btn btn-secondary">Left</button>
-                  <button type="button" class="btn btn-secondary">Middle</button>
-                  <button type="button" class="btn btn-secondary">Right</button>
+                  <a href="<?php echo $linking ?>?ref=notification" class="btn btn-secondary">All</a>
+
+                  <?php 
+
+                    $query="SELECT department FROM notification GROUP BY department";
+                    $smtp = mysqli_query($conn, $query);
+
+                    while ($row =mysqli_fetch_array($smtp)) {
+                      $department = $row['department'];
+
+                      echo '<a href="'.$linking.'?ref=notification&dep='.$department.'" class="btn btn-secondary">'.$department.'</a>';
+                    }
+
+                   ?>
+
+
+
+
                 </div>
             </div>
             <div class="card-body p-0">
                 <table class="table table-hover">
+                          <thead class="bg-light">
+                          <tr>
+                            <th scope="col" class="pl-4">Department</th>
+                            <th scope="col">Message</th>
+                            <th scope="col">Date</th>
+                          </tr>
+                        </thead>
                   <tbody>
-                    <tr>
-                      <td class="pl-3">Mark</td>
-                    </tr>
+
+                  <?php 
+
+                    $dep="";
+
+                    if (isset($_GET['dep'])) {
+                      $dep=$_GET['dep'];
+                    }
+
+                    $query="SELECT * FROM notification WHERE department LIKE '%{$dep}%'";
+                    $smtp= mysqli_query($conn,$query);
+                    $i=1;
+                    while ($row=mysqli_fetch_array($smtp)) {
+                      
+                     $department = $row['department'];
+                     $msg= $row['msg']; 
+                     $id= $row['id']; 
+
+                     echo '
+
+                      <tr>
+
+                        <td class="pl-4">'.$department.'</td>
+                        <td>'.$msg.'</td>
+                        <td>21/03/2021</td>  
+                      </tr>
+
+                     ';
+                     $i++;
+
+                    }
+
+                   ?>
                   </tbody>
                 </table>
             </div>
