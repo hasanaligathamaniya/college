@@ -19,6 +19,13 @@
 <div class="newsletter-section section section-padding position-relative">
 
     <div class="container">
+
+      <?php 
+
+       if (!isset($_GET['notify_id'])) {
+        
+       ?>
+
         <div class="card">
             <div class="card-header p-0 bg-secondary">
                 <div class="btn-group" role="group" aria-label="Basic example">
@@ -47,7 +54,7 @@
                           <thead class="bg-light">
                           <tr>
                             <th scope="col" class="pl-4">Department</th>
-                            <th scope="col">Message</th>
+                            <th scope="col">Title</th>
                             <th scope="col">Date</th>
                           </tr>
                         </thead>
@@ -67,7 +74,7 @@
                     while ($row=mysqli_fetch_array($smtp)) {
                       
                      $department = $row['department'];
-                     $msg= $row['msg']; 
+                     $title= $row['title']; 
                      $id= $row['id']; 
 
                      echo '
@@ -75,7 +82,7 @@
                       <tr>
 
                         <td class="pl-4">'.$department.'</td>
-                        <td>'.$msg.'</td>
+                        <td><a href="'.$linking.'?ref=notification&notify_id='.$id.'">'.$title.'</a></td>
                         <td>21/03/2021</td>  
                       </tr>
 
@@ -89,6 +96,43 @@
                 </table>
             </div>
        </div>
+
+       <?php 
+
+              }
+
+        if (isset($_GET['notify_id'])) {
+
+          $query="SELECT * FROM notification WHERE id='{$_GET['notify_id']}'";
+          $smtp= mysqli_query($conn,$query);
+          $row=mysqli_fetch_array($smtp);
+          $title=$row['title'];
+          $msg=$row['msg'];
+          $attech=$row['attech'];
+
+        ?>
+
+        <div class="card">
+          <div class="card-header"><?php echo $title; ?></div>
+          <div class="card-body">
+
+            <?php echo $msg; ?>
+
+            <br>
+
+            <?php 
+
+              if (!empty($attech)) {
+                echo "<a href='bin/{$attech}' class='btn btn-primary' target='blank_'>Attachment</a>";
+              }
+
+             ?>
+
+          </div>
+        </div>
+
+       <?php } ?>
     </div>
+
 
 </div>

@@ -1,3 +1,4 @@
+<?php include 'include/config.php'; ?>
 <?php ob_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -40,8 +41,12 @@
         
         switch ($source) {
 
-            case 'notification':
-             include 'include/path/notification.php';
+            case 'Add-notification':
+             include 'include/path/noti_add.php';
+            break;
+
+            case 'View-notification':
+             include 'include/path/noti_view.php';
             break;
             
             default:

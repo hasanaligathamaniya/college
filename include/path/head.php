@@ -1,5 +1,5 @@
         <!-- Header Top Section Start -->
-        <div class="header-top-section section" data-bg-color="#f5f5f5">
+<!--         <div class="header-top-section section" data-bg-color="#f5f5f5">
             <div class="container">
                 <div class="row">
                     <div class="col-xl-8 offset-xl-2">
@@ -14,7 +14,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
         <!-- Header Top Section Start -->
 
         <!-- Header Section Start -->
@@ -38,7 +38,7 @@
                         <div class="col d-none d-xl-block position-static">
                             <nav class="site-main-menu menu-hover-1">
                                 <ul>
-                                    <li class="has-children position-static">
+<!--                                     <li class="has-children position-static">
                                         <a href="#"><span class="menu-text">Home</span></a>
                                         <span class="menu-toggle"><i class="far fa-angle-down"></i></span>
 
@@ -69,8 +69,8 @@
                                     </ul>
                                 </li>
                             </ul>
-                                    </li>
-                                    <li class="has-children">
+                                    </li> -->
+ <!--                                    <li class="has-children">
                                         <a href="#"><span class="menu-text">Pages</span></a>
                                         <span class="menu-toggle"><i class="far fa-angle-down"></i></span>
                                         <ul class="sub-menu">
@@ -144,7 +144,7 @@
                                             <li><a href="my-account.html"><span class="menu-text">My Account</span></a></li>
                                             <li><a href="login-register.html"><span class="menu-text">Login Register</span></a></li>
                                         </ul>
-                                    </li>
+                                    </li> -->
                                 </ul>
                             </nav>
                         </div>
@@ -155,25 +155,16 @@
                             <div class="header-right">
                                 <div class="inner">
 
-                                    <!-- Header Social Start -->
-                                    <div class="header-social d-none d-sm-flex">
-                                        <a href="#"><i class="fab fa-twitter"></i></a>
-                                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                                        <a href="#"><i class="fab fa-instagram"></i></a>
-                                        <a href="#"><i class="fab fa-linkedin"></i></a>
-                                    </div>
-                                    <!-- Header Social End -->
-
                                     <!-- Header Cart Start -->
                                     <div class="header-cart">
-
-                                        <a class="header-cart-btn" href="shopping-cart.html"><span class="cart-count">2</span><i class="far fa-shopping-cart"></i></a>
+<!-- 
+                                        <a class="header-cart-btn" href="shopping-cart.html"><span class="cart-count">2</span><i class="far fa-shopping-cart"></i></a> -->
 
                                         <!-- Header Mini Cart Start -->
-                                        <div class="header-mini-cart">
+                                 <!--        <div class="header-mini-cart">
                                             <div class="inner">
 
-                                                <!-- Header Mini Cart Product Start -->
+                                             
                                                 <div class="mini-cart-products">
                                                     <div class="mini-cart-product">
                                                         <a href="#" class="thumb"><img src="assets/images/products/mini-cart/product-1.jpg" alt=""></a>
@@ -192,9 +183,7 @@
                                                         <a href="#" class="remove"><i class="far fa-times"></i></a>
                                                     </div>
                                                 </div>
-                                                <!-- Header Mini Cart Product End -->
-
-                                                <!-- Header Mini Cart Footer Start -->
+                           
                                                 <div class="mini-cart-footer">
                                                     <div class="mini-cart-total">
                                                         <b>Total:</b>
@@ -205,9 +194,9 @@
                                                         <a href="checkout.html" class="btn btn-primary btn-hover-secondary">Checkout</a>
                                                     </div>
                                                 </div>
-                                                <!-- Header Mini Cart Footer End -->
+                                                
                                             </div>
-                                        </div>
+                                        </div> -->
                                         <!-- Header Mini Cart End -->
                                     </div>
                                     <!-- Header Cart End -->
