@@ -1,3 +1,32 @@
+<?php 
+    
+    if (isset($_COOKIE['co_user_id'])) {
+       
+       $query="SELECT * FROM users WHERE user_id='{$_COOKIE['co_user_id']}'";
+       $smtp = mysqli_query($conn,$query);
+
+       $row= mysqli_fetch_array($smtp);
+
+       $user_id = $row['user_id'];
+       $username = $row['username'];
+       $email = $row['email'];
+       $phone = $row['phone'];
+       $icon = $row['icon'];
+       $em_verify = $row['em_verify'];
+
+    }
+
+    if (isset($_GET['logout_101'])) {
+
+      setcookie('co_username', "", time() + (86400 * 2), "/");
+      setcookie('co_db_email', "", time() + (86400 * 2), "/");
+      setcookie('co_user_id', "", time() + (86400 * 2), "/");
+
+      header("location: {$linking}");
+
+    }
+    
+ ?>
         <!-- Header Top Section Start -->
 <!--         <div class="header-top-section section" data-bg-color="#f5f5f5">
             <div class="container">
@@ -200,16 +229,35 @@
                                         <!-- Header Mini Cart End -->
                                     </div>
                                     <!-- Header Cart End -->
-
-                                    <!-- Header Login Start -->
-                                    <div class="header-login">
-                                        <a href="profile.html"><i class="far fa-user-circle"></i></a>
-                                    </div>
                                     <!-- Header Login End -->
 
                                     <!-- Header Fullscreen Search Start -->
                                     <button class="header-fs-search-toggle"><i class="far fa-search"></i></button>
                                     <!-- Header Fullscreen Search End -->
+                                                                        <!-- Header Login Start -->
+                                    <div class="header-login">
+                            <?php 
+
+                                if (isset($user_id)) {
+                                    echo "
+                            <div class='dropdown ml-5'>
+                              <a type='button' id='dropdownMenuButton' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
+                                <i class='far fa-user-circle mr-2'></i><span style='margin-top: 3px'>{$username}</span><i class='fas fa-angle-down ml-2'></i>
+                              </a>
+                              <div class='dropdown-menu' aria-labelledby='dropdownMenuButton'>
+                                <a class='dropdown-item' href='#'>Action</a>
+                                <a class='dropdown-item' href='#'>Another action</a>
+                                <a class='dropdown-item' href='#'>Something else here</a>
+                                    <div class='dropdown-divider'></div>
+                                <a class='dropdown-item' href='{$linking}?logout_101=1'>Logout<i class='fas fa-sign-out-alt ml-2' style='font-size:15px'></i></a>
+                              </div>
+                            </div>
+                                    ";
+                                }else{
+                                    echo "<a href='{$linking}?ref=Sign' class='btn btn-primary btn-hover-secondary text-white ml-5'>Sign up</a>";
+                                }
+                             ?>
+                                    </div>
 
                                     <!-- Header Mobile Menu Toggle Start -->
                                     <div class="header-mobile-menu-toggle d-xl-none ml-sm-2">
